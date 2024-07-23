@@ -12,11 +12,6 @@ local M = {}
 M.walk_string = function(str)
   -- local globs = {}
   local glob = Glob:new()
-  local current_glob = 0
-  --- 0 is not opened, 1 is maybe opened, 2 is opened
-  --- This threeway boolean is because we need to handle spcial case like []]
-  ---@type 0 | 1 | 1
-  local is_square_bracket_open = 0
   ---@type "base" | "filename" | "extension"
   local current_part = "base"
   ---@type "base" | "filename" | "extension"
