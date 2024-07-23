@@ -109,4 +109,9 @@ M.permutations = function(tokens)
   return string.format("%s%s%s", "(", table.concat(result, "|"), ")")
 end
 
+--- Concat multiple glob patterns together
+---@param patterns string[]: the patterns
+---@return string: the concatenated pattern
+M.glob_concat = function(patterns) end
+
 return M

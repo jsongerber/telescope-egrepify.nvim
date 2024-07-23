@@ -28,7 +28,7 @@ _TelescopeEgrepifyConfig = {
       ["<C-z>"] = egrep_actions.toggle_prefixes,
       ["<C-a>"] = egrep_actions.toggle_and,
       ["<C-r>"] = egrep_actions.toggle_permutations,
-      ["<c-space>"] = actions.to_fuzzy_refine
+      ["<c-space>"] = actions.to_fuzzy_refine,
     },
   },
   prefixes = {

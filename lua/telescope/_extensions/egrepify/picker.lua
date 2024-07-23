@@ -172,6 +172,7 @@ function Picker.picker(opts)
       prompt = egrep_utils.permutations(tokens)
     end
 
+    vim.print(vim.inspect(flatten { args, prompt_args, "--", prompt, search_list }))
     return flatten { args, prompt_args, "--", prompt, search_list }
   end, egrep_entry_maker(opts), opts.max_results, opts.cwd)
 

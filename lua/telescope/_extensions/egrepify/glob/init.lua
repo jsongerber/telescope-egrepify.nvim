@@ -11,6 +11,11 @@ function Glob:new(data)
   }, self)
 end
 
+---@param extension string
+function Glob:add_extension(extension)
+  table.insert(self.extensions, extension)
+end
+
 --- Append an extension to the glob
 ---@param extension string: the extension to append
 ---@return Glob
