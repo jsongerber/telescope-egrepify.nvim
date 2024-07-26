@@ -1,42 +1,42 @@
 local utils = require "telescope._extensions.egrepify.glob.parser"
-local parser = require "telescope._extensions.egrepify.glob.parser"
+local Parser = require "telescope._extensions.egrepify.glob.parser"
 
 -- Some ideas: https://github.com/micromatch/parse-glob/blob/HEAD/test.js
 describe("Parse only extension glob", function()
   it("should parse a glob with one extension", function()
     assert.same({
       { extensions = { "txt" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".txt")
+    }, Parser.parse ".txt")
     assert.same({
       { extensions = { "txt" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".txt")
+    }, Parser.parse ".txt")
   end)
 
   it("one extension with bracket", function()
     assert.same({
       { extensions = { "[0-9]" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".[0-9]")
+    }, Parser.parse ".[0-9]")
     assert.same({
       { extensions = { "[0-9]" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".[0-9]")
+    }, Parser.parse ".[0-9]")
     assert.same({
       { extensions = { "t[abc]t" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".t[abc]t")
+    }, Parser.parse ".t[abc]t")
   end)
 
   it("one extension with multipart", function()
     assert.same({
       { extensions = { "min.js" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".min.js")
+    }, Parser.parse ".min.js")
     assert.same({
       { extensions = { "min.js" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".min.js")
+    }, Parser.parse ".min.js")
   end)
 
   it("one extension with curly bracket", function()
     assert.same({
       { extensions = { "js", "mjs" }, filenames = {}, paths = {} },
-    }, parser.parse_glob ".{js,mjs}")
+    }, Parser.parse ".{js,mjs}")
   end)
 
   -- it("one extension without dot", function()
@@ -97,44 +97,44 @@ describe("Parse filename and paths glob", function()
     assert.same({
       { filenames = { "test" }, paths = {}, extensions = {} },
       { filenames = {}, paths = { "test/" }, extensions = {} },
-    }, parser.parse_glob "test")
+    }, Parser.parse "test")
   end)
 
   it("shoould parse one filename with bracket", function()
     assert.same({
       { filenames = { "[0-9]" }, paths = {}, extensions = {} },
       { filenames = {}, paths = { "[0-9]/" }, extensions = {} },
-    }, parser.parse_glob "[0-9]")
+    }, Parser.parse "[0-9]")
     assert.same({
       { filenames = { "[0-9]" }, paths = {}, extensions = {} },
       { filenames = {}, paths = { "[0-9]/" }, extensions = {} },
-    }, parser.parse_glob "[0-9]")
+    }, Parser.parse "[0-9]")
     assert.same({
       { filenames = { "t[abc]t" }, paths = {}, extensions = {} },
       { filenames = {}, paths = { "t[abc]t/" }, extensions = {} },
-    }, parser.parse_glob "t[abc]t")
+    }, Parser.parse "t[abc]t")
   end)
 
   it("should parse one filename with curly bracket", function()
     assert.same({
       { filenames = { "test", "lorem" }, paths = {}, extensions = {} },
       { filenames = {}, paths = { "test/", "lorem/" }, extensions = {} },
-    }, parser.parse_glob "{test,lorem}")
+    }, Parser.parse "{test,lorem}")
   end)
 
   it("should parse one filename with threeaway curly bracket", function()
     assert.same({
       { filenames = { "test", "lorem", "dolor" }, paths = {}, extensions = {} },
       { filenames = {}, paths = { "test/", "lorem/", "dolor/" }, extensions = {} },
-    }, parser.parse_glob "{test,lorem,dolor}")
+    }, Parser.parse "{test,lorem,dolor}")
   end)
 
   it("Should parse extension with filename", function()
     assert.same({
       { extensions = { "txt" }, filenames = { "*" }, paths = {} },
-    }, parser.parse_glob "*.txt")
+    }, Parser.parse "*.txt")
     assert.same({
       { extensions = { "txt" }, filenames = { "a" }, paths = {} },
-    }, parser.parse_glob "a.txt")
+    }, Parser.parse "a.txt")
   end)
 end)
